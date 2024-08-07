@@ -7,8 +7,8 @@ import MenuHeader from './MenuHeader';
 import { useState } from 'react';
 
 const cx = classNames.bind(styles);
-const defaultFn = () => {}
-function Menu({ children, items = [] , onChange=defaultFn}) {
+const defaultFn = () => {};
+function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
     const renderItems = () => {
@@ -22,7 +22,7 @@ function Menu({ children, items = [] , onChange=defaultFn}) {
                         if (isParent) {
                             setHistory((prev) => [...prev, item.children]);
                         } else {
-                            onChange(item)
+                            onChange(item);
                         }
                     }}
                 />
@@ -31,22 +31,28 @@ function Menu({ children, items = [] , onChange=defaultFn}) {
     };
     return (
         <Tippy
+            hideOnClick={hideOnClick}
             delay={[0, 700]}
-            offset={[15,10]}
+            offset={[15, 10]}
             animateFill
             interactive
             placement="bottom-end"
             render={(attrs) => (
                 <div className={cx('menu-list')} tabIndex="-1" {...attrs}>
                     <PopperWrapper className={cx('menu-popper')}>
-                        {history.length > 1 && <MenuHeader title="languages" onBack={() => {
-                            setHistory(prev => prev.slice(0, prev.length -1))
-                        }}/>}
+                        {history.length > 1 && (
+                            <MenuHeader
+                                title="languages"
+                                onBack={() => {
+                                    setHistory((prev) => prev.slice(0, prev.length - 1));
+                                }}
+                            />
+                        )}
                         {renderItems()}
                     </PopperWrapper>
                 </div>
             )}
-            onHide={() => setHistory(prev => prev.slice(0, 1))}
+            onHide={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </Tippy>

@@ -1,8 +1,10 @@
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
+import { Link } from 'react-router-dom';
 // Tippy
 import Tippy from '@tippyjs/react/';
 import 'tippy.js/dist/tippy.css'; // optional
+import routesConfig from '~/config/routes';
 
 import images from '~/assets/images';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -90,9 +92,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <Link to={routesConfig.home} className={cx('logo-link')}>
                     <img src={images.logo} alt="Tiktok logo" />
-                </div>
+                </Link>
                 <Search />
                 <div className={cx('actions')}>
                     {currentUser ? (
