@@ -7,7 +7,12 @@
 }
 
 .menu-popper {
+   
     padding-bottom: 8px;
+}
+
+.menu-body {
+    overflow-y: auto;
 }
 
 // MenuItem component CSS
@@ -35,6 +40,7 @@
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
 }
 
 .back-btn {

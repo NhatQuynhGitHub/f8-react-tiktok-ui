@@ -34,7 +34,6 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
             hideOnClick={hideOnClick}
             delay={[0, 700]}
             offset={[15, 10]}
-            animateFill
             interactive
             placement="bottom-end"
             render={(attrs) => (
@@ -48,7 +47,7 @@ function Menu({ children, items = [], hideOnClick = false, onChange = defaultFn 
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className={cx('menu-body')}>{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             )}
