@@ -1,5 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Menu.module.scss';
+import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,6 +15,11 @@ function MenuHeader({ title, onBack }) {
             <h4 className={cx('menu-header_title')}>{title}</h4>
         </header>
     );
+}
+
+MenuHeader.propTypes = {
+    title: PropTypes.string.isRequired,
+    onBack:PropTypes.func
 }
 
 export default MenuHeader;
